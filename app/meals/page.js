@@ -1,10 +1,16 @@
 import MealsGrid from '@/components/meals/meals-grid';
 import { getMeals } from '@/lib/meals';
 import Link from 'next/link';
+import { Suspense } from 'react'; //컴포넌트 일부 데이터 또는 리소스가 불리울때까지 로딩 상태를 처리하고 대체 컨텐츠를 표시 가능
 import classes from './page.module.css';
 
-export default async function MealsPage() {
-    const meals = await getMeals();
+async function Meals() {
+    const meals = await getMeals();    
+    return <MealsGrid meals={meals}/>
+}
+
+export default function MealsPage() {
+    //const meals = await getMeals();
 
     return (
         <>
@@ -21,7 +27,10 @@ export default async function MealsPage() {
             </p>
         </header>
         <main className={classes.main}>
-            <MealsGrid meals={meals}/>
+            {/* <MealsGrid meals={meals}/> */}
+            <Suspense fallback={ <p className={classes.loading}>Fetching Meals...</p>}>
+            <Meals/>
+            </Suspense>
         </main>
         </>
     )
