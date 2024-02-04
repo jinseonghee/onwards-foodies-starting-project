@@ -1,7 +1,9 @@
 import classes from './page.module.css';
 import ImagePicker from '@/components/meals/image-picker';
+import { shareMeal } from '@/lib/action'; //'use client'를 사용하기 위해 컴포넌트를 따로 빼서 server action을 관리
 
 export default function ShareMealPage() {
+
   return (
     <>
       <header className={classes.header}>
@@ -11,7 +13,7 @@ export default function ShareMealPage() {
         <p>Or any other meal you feel needs sharing!</p>
       </header>
       <main className={classes.main}>
-        <form className={classes.form}>
+        <form className={classes.form} action={shareMeal}> {/*원래 action은 form기능제어 안에 요청이 보내질 경로에 대한 설정이 이뤄지는데 server action을 사용하므로써 nextjs가 자동으로 next서버로 보냄 */}
           <div className={classes.row}>
             <p>
               <label htmlFor="name">Your name</label>
@@ -39,7 +41,7 @@ export default function ShareMealPage() {
               required
             ></textarea>
           </p>
-          <ImagePicker/>
+          <ImagePicker label="Your image" name="image"/> {/*여기에 이름을 설정함으로써 formData.get을 통해 image를 추출  */}
           <p className={classes.actions}>
             <button type="submit">Share Meal</button>
           </p>
