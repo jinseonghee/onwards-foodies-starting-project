@@ -1,9 +1,13 @@
+'use client';
+
+import {useFormStatus} from 'react-dom';
 import classes from './page.module.css';
 import ImagePicker from '@/components/meals/image-picker';
 import { shareMeal } from '@/lib/action'; //'use client'를 사용하기 위해 컴포넌트를 따로 빼서 server action을 관리
 import MealsFormSubmit from '@/components/meals/meals-form-submit';
 
 export default function ShareMealPage() {
+    const [state, formAction ] = useFormStatus(shareMeal, {message: null});
    
   return (
     <>
@@ -14,7 +18,8 @@ export default function ShareMealPage() {
         <p>Or any other meal you feel needs sharing!</p>
       </header>
       <main className={classes.main}>
-        <form className={classes.form} action={shareMeal}> {/*원래 action은 form기능제어 안에 요청이 보내질 경로에 대한 설정이 이뤄지는데 server action을 사용하므로써 nextjs가 자동으로 next서버로 보냄 */}
+        <form className={classes.form} action={formAction}> {/*원래 action은 form기능제어 안에 요청이 보내질 경로에 대한 설정이 이뤄지는데 server action을 사용하므로써 nextjs가 자동으로 next서버로 보냄 */}
+                                            {/*action에 formAction을 설정해줘야 useFormStatus가 접근해서 상태를 관리 할 수 있다. */}
           <div className={classes.row}>
             <p>
               <label htmlFor="name">Your name</label>
@@ -43,6 +48,7 @@ export default function ShareMealPage() {
             ></textarea>
           </p>
           <ImagePicker label="Your image" name="image"/> {/*여기에 이름을 설정함으로써 formData.get을 통해 image를 추출  */}
+          {state.message && <p>{state.message}</p>}
           <p className={classes.actions}>
             {/* <button type="submit">Share Meal</button> */}
             <MealsFormSubmit/>
