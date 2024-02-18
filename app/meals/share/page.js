@@ -1,13 +1,13 @@
-'use client';
+'use client'; 
 
-import {useFormStatus} from 'react-dom';
+import { useFormState } from "react-dom";
 import classes from './page.module.css';
 import ImagePicker from '@/components/meals/image-picker';
 import { shareMeal } from '@/lib/action'; //'use client'를 사용하기 위해 컴포넌트를 따로 빼서 server action을 관리
 import MealsFormSubmit from '@/components/meals/meals-form-submit';
 
 export default function ShareMealPage() {
-    const [state, formAction ] = useFormStatus(shareMeal, {message: null});
+    const [state, formAction] = useFormState(shareMeal, {message: null});
    
   return (
     <>

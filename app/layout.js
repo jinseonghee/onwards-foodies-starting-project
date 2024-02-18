@@ -2,8 +2,8 @@ import MainHeader from '@/components/main-header/main-header';
 import './globals.css';
 
 export const metadata = {
-  title: 'NextLevel Food',
-  description: 'Delicious meals, shared by a food-loving community.',
+  title: 'All Meals',
+  description: 'Browse the delicious meals shared by our vibrant community.',
 };
 
 export default function RootLayout({ children }) {
