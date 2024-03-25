@@ -20,7 +20,7 @@ export default function ImagePicker({label, name}) {
         }
         const fileReader = new FileReader(); //이미지를 미리보기 하려면 data url로 변환 필요(단순히 이미지 요소의 입력값으로 사용)
 
-        fileReader.onload = () => { //fileReader는 아무것돋 반환하지 않기 때문에 onload로 dataurl을 얻는다.
+        fileReader.onload = () => { //fileReader는 아무것돋 반환하지 않기 때문에 onload로 data url을 얻는다.
             setPickedImage(fileReader.result) //
         }
 
