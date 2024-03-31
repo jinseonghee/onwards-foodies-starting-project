@@ -13,7 +13,7 @@ export default function MainHeader() {
         <header className={classes.header}>
         <Link className={classes.logo} href="/">
             <Image src={logoImg} alt="A plate with food on it" priority/>{/*header img는 항상 제일먼저 로딩되어하기 때무넹 priority */}
-            NextLevel Food
+            SeongHee's NextLevel Food
         </Link>
         <nav className={classes.nav}>
             <ul>
